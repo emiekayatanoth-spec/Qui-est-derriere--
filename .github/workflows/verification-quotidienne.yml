@@ -1,0 +1,24 @@
+
+name: Verification quotidienne
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recuperer le projet
+        uses: actions/checkout@v4
+
+      - name: Verifier les fichiers
+        run: |
+          echo "Verification quotidienne"
+          test -f index.html
+          echo "Le fichier index.html est present."
+          echo "Les sources externes restent a configurer."
